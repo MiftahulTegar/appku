@@ -26,14 +26,10 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{username}:{password}@{hostname}:{port}/{database}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI')
-    # app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER')
-    # app.config['MAX_CONTENT_PATH'] = os.environ.get('MAX_CONTENT_PATH') * 1024 * 1024
-    db.init_app(app)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    db.init_app(app)
 
     from .models.user import User, Profile, Time
 

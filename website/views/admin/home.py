@@ -15,8 +15,8 @@ import locale
 DBhome = Blueprint('DBhome', __name__)
 
 load_dotenv(path.join(path.dirname(__file__), '.env'))
-upload_images = path.join(Path(__file__).parents[2], 'static', app.config['UPLOAD_FOLDER'])
-named_img = path.join(Path(__file__).parents[5], app.config['UPLOAD_FOLDER'])
+upload_images = os.path.join(Path(__file__).parents[2], 'static', app.config.get('UPLOAD_FOLDER', ''))
+named_img = os.path.join(Path(__file__).parents[5], app.config.get('UPLOAD_FOLDER', ''))
 
 ######################### DASHBOARD #########################
 

@@ -1,3 +1,4 @@
+import os
 from ...models.user import Treatment
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from pathlib import Path
@@ -6,8 +7,8 @@ from os import path
 
 cbf_algoritma = Blueprint('cbf_algoritma', __name__)
 
-upload_images = path.join(Path(__file__).parents[2], 'static', app.config['UPLOAD_FOLDER'])
-named_img = path.join(Path(__file__).parents[5], app.config['UPLOAD_FOLDER'])
+upload_images = os.path.join(Path(__file__).parents[2], 'static', app.config.get('UPLOAD_FOLDER', ''))
+named_img = os.path.join(Path(__file__).parents[5], app.config.get('UPLOAD_FOLDER', ''))
 
 def hitung_kesamaan(kasus_baru, kasus_lama):
    
