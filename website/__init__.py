@@ -1,13 +1,12 @@
-from flask import Flask, logging
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from dotenv import load_dotenv
-from os import path
 from werkzeug.security import generate_password_hash
 import locale
 import os
 from flask_cors import CORS
 import traceback
+import logging
 
 # Load environment variables
 logging.basicConfig(level=logging.DEBUG)
@@ -28,6 +27,8 @@ def create_app():
         locale.setlocale(locale.LC_TIME, '')  # Use default locale
         logger.warning(f"Failed to set locale to id_ID: {e}")
 
+    logger.debug("Finished setting locale")
+
     hostname = "b2y.h.filess.io"
     database = "appkulilis_emptybelow"
     port = "3307"
@@ -46,6 +47,7 @@ def create_app():
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    logger.debug("Initialized login manager and SQLAlchemy")
 
     from .models.user import User, Profile, Time
 
