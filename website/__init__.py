@@ -112,5 +112,9 @@ def create_app():
                 new_time = Time(time=time)
                 db.session.add(new_time)
                 db.session.commit()
+
+    logging.basicConfig(level=logging.DEBUG)
+    logger = logging.getLogger(__name__)
+    logger.debug("App created successfully")
             
     return app
