@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, logging
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from dotenv import load_dotenv
@@ -120,8 +120,4 @@ def create_app():
                 db.session.add(new_time)
                 db.session.commit()
 
-    logging.basicConfig(level=logging.DEBUG)
-    logger = logging.getLogger(__name__)
-    logger.debug("App created successfully")
-            
     return app
