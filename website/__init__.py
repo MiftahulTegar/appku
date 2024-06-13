@@ -8,10 +8,6 @@ from flask_cors import CORS
 import traceback
 import logging
 
-# Load environment variables
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
 login_manager = LoginManager()
 db = SQLAlchemy()
 
@@ -19,15 +15,6 @@ def create_app():
     global app
     app = Flask(__name__)   
     CORS(app)
-
-    try:
-        locale.setlocale(locale.LC_TIME, "id_ID")
-        logger.debug("Locale set to id_ID")
-    except locale.Error as e:
-        locale.setlocale(locale.LC_TIME, '')  # Use default locale
-        logger.warning(f"Failed to set locale to id_ID: {e}")
-
-    logger.debug("Finished setting locale")
 
     hostname = "b2y.h.filess.io"
     database = "appkulilis_emptybelow"
@@ -47,7 +34,6 @@ def create_app():
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    logger.debug("Initialized login manager and SQLAlchemy")
 
     from .models.user import User, Profile, Time
 
