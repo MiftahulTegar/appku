@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "2.9.12"  # Ini hanya contoh, ganti dengan versi libxml2 yang sesuai jika diperlukan
