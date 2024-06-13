@@ -21,10 +21,20 @@ def create_app():
     app = Flask(__name__)   
     CORS(app)
 
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI')
+    hostname = "b2y.h.filess.io"
+    database = "appkulilis_emptybelow"
+    port = "3307"
+    username = "appkulilis_emptybelow"
+    password = "4eb04dd242c9dd3b6beb0248472453e4ee964445"
+    
     app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER')
-    app.config['MAX_CONTENT_PATH'] = os.environ.get('MAX_CONTENT_PATH') * 1024 * 1024
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{username}:{password}@{hostname}:{port}/{database}'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    # app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI')
+    # app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER')
+    # app.config['MAX_CONTENT_PATH'] = os.environ.get('MAX_CONTENT_PATH') * 1024 * 1024
     db.init_app(app)
 
     login_manager.login_view = 'auth.login'
