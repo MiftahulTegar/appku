@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/user/head.html' %}
+</head>
+
+<body>
+    <section id="banner">
+        <div class="bg-color">
+            {% include 'base/user/sidebar.html' %}
+            <div class="container">
+                <div class="row">
+                    <div class="inner text-center">
+                        <h1 class="logo-name">Konsultasi Masalah Kulit Anda Sekarang</h1>
+                        <h2>Untuk apa konsultasi?</h2>
+                        <p style="font-size: 20px;">Konsultasi kulit adalah proses interaksi antara pasien dan ahli
+                            kulit untuk mengevaluasi kondisi kulit, mengidentifikasi masalah, dan merumuskan rencana
+                            perawatan yang tepat. Tujuan utamanya adalah mendapatkan diagnosis akurat, mengembangkan
+                            perawatan yang dipersonalisasi, memberikan edukasi tentang perawatan kulit, serta mencegah
+                            masalah kulit di masa depan. Konsultasi ini juga melibatkan pemantauan dan penyesuaian
+                            perawatan untuk memastikan hasil yang optimal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section formbold-main-wrapper">
+        <div class="row d-flex justify-content-center pt-5">
+            <div class="col-lg-12 mx-auto">
+
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <h5 class="card-title mb-0">Jadwal Konsultasi</h5>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped datatable mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Dokter</th>
+                                        <th>Tanggal/Hari Konsultasi</th>
+                                        <th>Jam Konsultasi</th>
+                                        <th>Telp</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in datas %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ data.spdoctor.profile.name }}</td>
+                                        <td>{{ data.date }}</td>
+                                        <td>{{ data.time }}</td>
+                                        <td>{{ data.telp }}</td>
+                                        {% if data.status == "waiting" %}
+                                        <td><button class="status-button status-pending">Menunggu Konfirmasi</button>
+                                        </td>
+                                        {% elif data.status == "confirmed" %}
+                                        <td><button class="status-button status-scheduled">Terjadwal</button></td>
+                                        {% elif data.status == "rejected" %}
+                                        <td><button class="status-button status-rejected">Ditolak</button></td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer text-center"">
+        <div class=" footer-top">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6 text-center">
+                <div class="widget">
+                    <h4 class="widget-title">Klinik Kecantikan</h4>
+                    <address>Yogyakarta Indonesia</address>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".formbold-main-wrapper").scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    {% include 'base/user/foot.html' %}
+    {% include 'base/user/foot.html' %}
+    {% include 'base/user/foot2.html' %}
+</body>
+
+</html>

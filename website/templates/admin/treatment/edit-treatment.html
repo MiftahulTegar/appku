@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/admin/head.html' %}
+</head>
+
+<body>
+
+    {% include 'base/admin/sidebar.html' %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Data Treatment</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('DBhome.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a>Data Treatment</a></li>
+                    <li class="breadcrumb-item active">Ubah Data Treatment</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="section">
+            <div class="row">
+
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Form Dokter</h5>
+
+                            <!-- Vertical Form -->
+                            <form class="row g-3 mt-2" method="POST" action="{{ url_for('DBhome.edittreatment') }}"
+                                enctype="multipart/form-data">
+                                <input type="hidden" name="id" id="id" value="{{treatments.id}}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="typeTreatment" class="form-label">Jenis Treatment <span
+                                                    class="text-danger">*</span></label>
+                                            <select class="form-control" id="type" name="type" required>
+                                                {% for type in types %}
+                                                <option value="{{ type.id }}"
+                                                    {% if treatments.type_id == type.id %}selected{% endif %}
+                                                    data-confirmed="false">{{ type.type }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="treatments" class="form-label">Treatment <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="treatment" id="treatments"
+                                                value="{{treatments.treatment}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="benefit" class="form-label">Manfaat <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="benefit" id="benefit"
+                                        required>{{treatments.benefit}}</textarea>
+
+                                </div>
+                                <div class="col-12">
+                                    <label for="skin" class="form-label">Jenis Kulit <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="skin" id="skin"
+                                        required>{{treatments.skin}}</textarea>
+
+                                </div>
+                                <div class="col-12">
+                                    <label for="information" class="form-label">Informasi <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="information" id="information"
+                                        required>{{treatments.information}}</textarea>
+
+                                </div>
+                                <div class="text-end mt-3">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    {% include 'base/admin/foot.html' %}
+
+</body>
+
+</html>

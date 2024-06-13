@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/user/head.html' %}
+</head>
+
+<body>
+    <section id="banner">
+        <div class="bg-color">
+            {% include 'base/user/sidebar.html' %}
+            <div class="container">
+                <div class="row">
+                    <div class="inner text-center">
+                        <h1 class="logo-name">Klinik Kecantikan</h1>
+                        <h2>Apa itu treatment?</h2>
+                        <p style="font-size: 20px;">Treatment kecantikan adalah prosedur yang bekerja pada kulit untuk mengatasi masalah kulit. Dengan melakukan treatment secara rutin, maka masalah kulit akan hilang dan membuat kulit tampak sehat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center marb-35">
+                    <h1 class="header-h">Apasih manfaat treatment bagi kulit ?</h1>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="about-info">
+                            <h2 class="heading">Beberapa manfaat treatment kulit :</h2>
+                            <div class="details-list">
+                                <ul>
+                                    <li><i class="fa fa-check"></i>1. Peningkatan Kecerahan Kulit</li>
+                                    <li><i class="fa fa-check"></i>2. Peremajaan Kulit</li>
+                                    <li><i class="fa fa-check"></i>3. Pengurangan Tanda Penuaan </li>
+                                    <li><i class="fa fa-check"></i>4. Perawatan Masalah Kulit</li>
+                                    <li><i class="fa fa-check"></i>4. Peningkatan Rasa Percaya Diri</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <img src="{{ url_for('static', filename='img/perawatan.jpg') }}" alt="" class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </section>
+    <section id="event">
+        <div class="bg-color" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center" style="padding:60px;">
+                        <h1 class="header-h">Lakukan treatment kulit anda sekarang juga.</h1>
+                    </div>
+                    <div class="col-md-12" style="padding-bottom:60px;">
+                        <div class="item active left">
+                            <div class="col-md-6 col-sm-6 left-images">
+                                <img src="{{ url_for('static', filename='img/edukasi.jpg') }}" class="img-responsive" style="height: 345px;">
+                            </div>
+                            <div class="col-md-6 col-sm-6 details-text">
+                                <div class="content-holder">
+                                    <h2>Laser Acne</h2>
+                                    <p style="text-align: justify;">Salah satu hasil yang signifikan dari treatment pada kulit berjerawat dan kusam dapat dicapai melalui perawatan laser acne. Metode ini bekerja dengan menargetkan bakteri penyebab jerawat dan merangsang regenerasi kulit, sehingga tidak hanya membantu mengurangi peradangan dan jumlah jerawat, tetapi juga memperbaiki tekstur kulit, mengurangi tampilan bekas jerawat, dan meningkatkan kecerahan kulit secara keseluruhan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer text-center">
+        <div class="footer-top">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 text-center">
+                    <div class="widget">
+                        <h4 class="widget-title">Klinik Kecantikan</h4>
+                        <address>Yogyakarta Indonesia</address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% include 'base/user/foot.html' %}
+</body>
+
+</html>

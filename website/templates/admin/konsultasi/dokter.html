@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/admin/head.html' %}
+</head>
+
+<body>
+
+    {% include 'base/admin/sidebar.html' %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Data Dokter</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('DBhome.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Data Dokter</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body data-tbdoctor">
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <h5 class="card-title mb-0">Datatables</h5>
+                                <a href="{{ url_for('DBhome.adddoctor') }}" target="_blank" class="btn btn-primary ms-auto">Tambah Dokter</a>
+                            </div>
+
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            <div id="alerts-container">
+                                {% for category, message in messages %}
+                                <div
+                                    class="alert {% if category == 'success' %}alert-success{% else %}alert-danger{% endif %} mb-5">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <script>
+                                function removeAlert() {
+                                    let alertsContainer = document.getElementById('alerts-container');
+                                    if (alertsContainer) {
+                                        let alerts = alertsContainer.getElementsByClassName(
+                                            'alert');
+                                        for (let i = 0; i < alerts.length; i++) {
+                                            let alert = alerts[i];
+                                            setTimeout(function () {
+                                                alert.remove();
+                                            }, 3000);
+                                        }
+                                    }
+                                }
+
+                                removeAlert();
+                            </script>
+                            {% endif %}
+                            {% endwith %}
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped datatable mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Telepon</th>
+                                            <th>Hari Kerja</th>
+                                            <th>Jam Kerja</th>
+                                            <th>Keterangan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for data in viewDoctor %}
+                                        <tr>
+                                            <td>{{ data.name }}</td>
+                                            <td>{{ data.telp }}</td>
+                                            <td>{{ data.date }}</td>
+                                            <td>{{ data.time }}</td>
+                                            <td style="text-align: justify;">{{ data.information }}</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="/data-dokter/ubah-data-dokter?id={{data.id}}" target="_blank">Edit</a>
+                                                <button class="btn btn-danger delete-button" data-id="{{ data.id }}">Hapus</button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    {% include 'base/admin/foot.html' %}
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const confirmation = confirm('Apakah Anda yakin ingin menghapus data dokter ini?');
+                if (confirmation) {
+                    fetch('/hapus-data-dokter', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `id=${id}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,79 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{{ url_for('DBhome.dashboard') }}" class="logo d-flex align-items-center">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item dropdown pe-3">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url_for('auth.logout') }}">
+                    <span class="d-none d-md-block ps-2">Keluar</span>
+                </a>
+
+            </li>
+
+        </ul>
+    </nav>
+
+</header>
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('DBhome.dashboard') }}">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Data Konsultasi</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ url_for('DBhome.datekonsultasi') }}">
+                        <i class="bi bi-circle"></i><span>Jadwal Konsultasi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('DBhome.doctor') }}">
+                        <i class="bi bi-circle"></i><span>Data Dokter</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav1" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Data Treatment</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav1" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ url_for('DBhome.type_treatment') }}">
+                        <i class="bi bi-circle"></i><span>Type Treatment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('DBhome.treatment') }}">
+                        <i class="bi bi-circle"></i><span>Data Treatment</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+
+</aside>

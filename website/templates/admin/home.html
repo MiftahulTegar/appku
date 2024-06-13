@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/admin/head.html' %}
+</head>
+
+<body>
+
+    {% include 'base/admin/sidebar.html' %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('DBhome.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card sales-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Jumlah Dokter </h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{countDoctor | length}} Dokter</h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card revenue-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Jumlah Pengguna</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{countUser | length - 1}} Pengguna</h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-4 col-xl-12">
+
+                            <div class="card info-card customers-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Jumlah Berita <span>| semua</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-newspaper"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{countTreatment | length}} Berita</h6>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    {% include 'base/admin/foot.html' %}
+
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/admin/head.html' %}
+</head>
+
+<body>
+
+    {% include 'base/admin/sidebar.html' %}
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Data Dokter</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('DBhome.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item ">Data Dokter</li>
+                    <li class="breadcrumb-item active">Tambah</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="section">
+            <div class="row">
+
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Form Dokter</h5>
+
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            <div id="alerts-container">
+                                {% for category, message in messages %}
+                                <div
+                                    class="alert {% if category == 'success' %}alert-success{% else %}alert-danger{% endif %} mb-5">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <script>
+                                function removeAlert() {
+                                    let alertsContainer = document.getElementById('alerts-container');
+                                    if (alertsContainer) {
+                                        let alerts = alertsContainer.getElementsByClassName(
+                                            'alert');
+                                        for (let i = 0; i < alerts.length; i++) {
+                                            let alert = alerts[i];
+                                            setTimeout(function () {
+                                                alert.remove();
+                                            }, 3000);
+                                        }
+                                    }
+                                }
+
+                                removeAlert();
+                            </script>
+                            {% endif %}
+                            {% endwith %}
+
+                            <!-- Vertical Form -->
+                            <form class="row g-3 mt-2" method="POST" action="{{ url_for('DBhome.adddoctor') }}"  enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="mb-3">
+                                            <label for="inputName" class="form-label">Nama & Gelar <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="name" id="inputName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="inputPicture" class="form-label">Foto <span class="text-danger">*</span></label>
+                                            <input type="file" class="form-control" id="inputPicture" name="photo" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="inputPhone" class="form-label">Telepon <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="telp" id="inputPhone" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="inputDate" class="form-label">Hari Kerja <span class="text-danger">*</span></label>
+                                            <select class="form-control" id="inputDate" name="date" required>
+                                                <option value="" disabled selected>Pilih Hari Kerja</option>
+                                                <option value="Senin s.d Jumat">Senin s.d Minggu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="inputTime" class="form-label">Jam Kerja <span class="text-danger">*</span></label>
+                                            <select class="form-control" id="inputTime" name="time" required>
+                                                <option value="" disabled selected>Pilih Jam Kerja</option>
+                                                <option value="09.00 s.d 16.00 WIB">09.00 s.d 16.00 WIB</option>
+                                                <option value="11.00 s.d 18.00 WIB">11.00 s.d 18.00 WIB</option>
+                                                <option value="13.00 s.d 20.00 WIB">13.00 s.d 20.00 WIB</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputKeterangan" class="form-label">Keterangan<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="inputKeterangan" name="information" required></textarea>
+                                </div>
+                                <div class="text-end mt-3">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    {% include 'base/admin/foot.html' %}
+
+</body>
+
+</html>

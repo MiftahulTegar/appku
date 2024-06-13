@@ -1,0 +1,62 @@
+<script src="{{ url_for('static', filename='js/admin/apexcharts.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/chart.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/echarts.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/quill.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/simple-datatables.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/tinymce.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/validate.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/main.js') }}"></script>
+
+<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/user/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/jquery-3.0.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/plugin.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/user/custom.js') }}"></script>
+
+<script>
+    function showConfirmation(bookingId) {
+        document.getElementById('confirmationModal').setAttribute('data-booking-id', bookingId);
+        $('#confirmationModal').modal('show');
+    }
+
+    function updateStatus(status) {
+        const bookingId = document.getElementById('confirmationModal').getAttribute('data-booking-id');
+
+        fetch(`/update-booking-status/${bookingId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    status: status
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    $('#confirmationModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Failed to update status');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function confirmStatus() {
+        updateStatus('confirmed');
+    }
+
+    function rejectStatus() {
+        updateStatus('rejected');
+    }
+</script>
+

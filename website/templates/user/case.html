@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/user/head.html' %}
+</head>
+
+<body>
+    <section id="banner">
+        <div class="bg-color">
+            {% include 'base/user/sidebar.html' %}
+            <div class="container">
+                <div class="row">
+                    <div class="inner text-center">
+                        <h1 class="logo-name">Konsultasi Masalah Kulit Anda Sekarang</h1>
+                        <h2>Untuk apa konsultasi?</h2>
+                        <p style="font-size: 20px;">Konsultasi kulit adalah proses interaksi antara pasien dan ahli
+                            kulit untuk mengevaluasi kondisi kulit, mengidentifikasi masalah, dan merumuskan rencana
+                            perawatan yang tepat. Tujuan utamanya adalah mendapatkan diagnosis akurat, mengembangkan
+                            perawatan yang dipersonalisasi, memberikan edukasi tentang perawatan kulit, serta mencegah
+                            masalah kulit di masa depan. Konsultasi ini juga melibatkan pemantauan dan penyesuaian
+                            perawatan untuk memastikan hasil yang optimal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="formbold-main-wrapper">
+        <div class="w-full">
+            <div class="formbold-form-wrapper active">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div id="flash-messages">
+                    {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const flashMessages = document.querySelectorAll('.flash.error');
+                        if (flashMessages.length > 0) {
+                            const userChoice = confirm(
+                                'Tidak ada rekomendasi perawatan yang ditemukan untuk gejala dan jenis kulit ini. Apakah Anda ingin mencoba lagi? Klik OK untuk mencoba lagi, atau Batal untuk pergi ke halaman lain.'
+                                );
+
+                            if (userChoice) {
+                                window.location.href = '/layanan-konsultasi'; 
+                            } else {
+                                window.location.href = '/data-dokter-praktik'; 
+                            }
+                        }
+                    });
+                </script>
+               
+                <div class="formbold-form-header">
+                    <h3>Punya masalah kulit? - Konsultasi sekarang!</h3>
+                </div>
+                <form action="" method="POST" class="formbold-chatbox-form">
+                    <div class="formbold-mb-5">
+                        <label for="gejala" class="formbold-form-label"> Gejala </label>
+                        <input type="text" class="formbold-form-input" id="gejala" name="gejala"
+                            placeholder="tulis gejala yang anda alami, contoh : kulit gatal gatal" required />
+                    </div>
+
+                    <div class="formbold-mb-5">
+                        <label for="jenis_kulit" class="formbold-form-label"> Jenis Kulit </label>
+                        <textarea rows="6" class="formbold-form-input" id="jenis_kulit" name="jenis_kulit"
+                            placeholder="tulis kondisi kulit anda saat ini, contoh : kulit berminyak dan berjerawat"
+                            required></textarea>
+                    </div>
+
+                    <div>
+                        <button class="formbold-btn w-full">Dapatkan Rekomendasi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer text-center"">
+        <div class=" footer-top">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6 text-center">
+                <div class="widget">
+                    <h4 class="widget-title">Klinik Kecantikan</h4>
+                    <address>Yogyakarta Indonesia</address>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .formbold-mb-5 {
+            margin-bottom: 20px;
+        }
+
+        .formbold-pt-3 {
+            padding-top: 12px;
+        }
+
+        .formbold-main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+
+        .formbold-form-wrapper {
+            margin: 0 auto;
+            max-width: 550px;
+            width: 100%;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .formbold-form-wrapper.active {
+            display: block;
+        }
+
+        .formbold-form-label {
+            display: block;
+            font-weight: 500;
+            font-size: 16px;
+            color: #07074d;
+            margin-bottom: 12px;
+        }
+
+        .formbold-form-label-2 {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .formbold-form-input {
+            width: 100%;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            font-weight: 500;
+            font-size: 16px;
+            color: #6b7280;
+            outline: none;
+            resize: none;
+        }
+
+        .formbold-form-input:focus {
+            border-color: #6a64f1;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formbold-btn {
+            text-align: center;
+            font-size: 16px;
+            border-radius: 6px;
+            padding: 14px 32px;
+            border: none;
+            font-weight: 600;
+            background-color: #6a64f1;
+            color: white;
+            cursor: pointer;
+        }
+
+        .formbold-btn:hover {
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formbold--mx-3 {
+            margin-left: -12px;
+            margin-right: -12px;
+        }
+
+        .formbold-px-3 {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .formbold-form-header {
+            background: #6a64f1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 36px;
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        .formbold-form-header h3 {
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+        }
+
+        .formbold-form-header button {
+            color: white;
+            background: transparent;
+            border: none;
+        }
+
+        .formbold-chatbox-form {
+            padding: 32px 36px;
+        }
+
+        .formbold-action-buttons {
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 48px;
+        }
+
+        .formbold-action-btn {
+            width: 70px;
+            height: 70px;
+            background: #6a64f1;
+            color: white;
+            border-radius: 50%;
+            margin-left: 20px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .formbold-action-btn .formbold-cross-icon {
+            display: none;
+        }
+
+        .formbold-action-btn.active .formbold-cross-icon {
+            display: block;
+        }
+
+        .formbold-action-btn.active .formbold-chat-icon {
+            display: none;
+        }
+
+        @media (min-width: 540px) {
+            .sm\:w-half {
+                width: 50%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".formbold-main-wrapper").scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    {% include 'base/user/foot.html' %}
+</body>
+
+</html>

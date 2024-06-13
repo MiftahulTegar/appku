@@ -1,0 +1,74 @@
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const passwordInput = document.getElementById('password');
+        const passwordCheck = document.getElementById('passwordCheck');
+        const alertBox = document.getElementById('alert');
+
+        function validatePassword() {
+            const password = passwordInput.value;
+            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+
+            if (regex.test(password)) {
+                passwordCheck.classList.add('visible');
+                alertBox.classList.add('d-none');
+            } else {
+                passwordCheck.classList.remove('visible');
+                alertBox.classList.remove('d-none');
+            }
+        }
+
+        passwordInput.addEventListener('input', validatePassword);
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            if (!validatePassword()) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const passwordInput = document.getElementById('password');
+        const passwordCheck = document.getElementById('passwordCheck');
+        const alertBox = document.getElementById('alert');
+        const togglePassword = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        function validatePassword() {
+            const password = passwordInput.value;
+            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+
+            if (regex.test(password)) {
+                passwordCheck.classList.add('visible');
+                alertBox.classList.add('d-none');
+                return true; // Password valid
+            } else {
+                passwordCheck.classList.remove('visible');
+                alertBox.classList.remove('d-none');
+                return false; // Password tidak valid
+            }
+        }
+
+        passwordInput.addEventListener('input', validatePassword);
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            if (!validatePassword()) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+

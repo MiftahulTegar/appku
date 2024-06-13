@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Klinik Kecantikan</title>
+    {% include 'base/user/head.html' %}
+</head>
+
+<body>
+    <section id="banner">
+        <div class="bg-color">
+            {% include 'base/user/sidebar.html' %}
+            <div class="container">
+                <div class="row">
+                    <div class="inner text-center">
+                        <h1 class="logo-name">Klinik Kecantikan</h1>
+                        <h2>Apa itu treatment?</h2>
+                        <p style="font-size: 20px;">Treatment kecantikan adalah prosedur yang bekerja pada kulit untuk mengatasi masalah kulit. Dengan melakukan treatment secara rutin, maka masalah kulit akan hilang dan membuat kulit tampak sehat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="slide-container swiper formbold-main-wrapper" style="padding-top: 5%; padding-bottom: 7%;">
+        <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+                {% for doctor in datas  %}
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename=doctor.photo) }}" alt="" class="card-img">
+                        </div>
+                    </div>
+
+                    <div class="card-content">
+                        <h2 class="name">{{doctor.name}}</h2>
+                        <p class="description"><b>Jam praktik</b> : {{ doctor.time }}</p>
+                        <p class="description">{{ doctor.information|truncate(80, True, '...') }}</p>
+
+                        <a class="button" href="/form-konsultasi?id={{doctor.id}}">Konsultasi</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="swiper-button-next swiper-navBtn"></div>
+        <div class="swiper-button-prev swiper-navBtn"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    </section>
+    <footer class="footer text-center">
+        <div class="footer-top">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 text-center">
+                    <div class="widget">
+                        <h4 class="widget-title">Klinik Kecantikan</h4>
+                        <address>Yogyakarta Indonesia</address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+{% include 'base/user/foot.html' %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector(".formbold-main-wrapper").scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+</html>

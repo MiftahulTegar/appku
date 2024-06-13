@@ -1,0 +1,14 @@
+<header id="header">
+    <div class="container">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{{ url_for('home.beranda') }}">Beranda</a>
+            <a href="{{ url_for('cbf_algoritma.input_gejala') }}">Konsultasi Kulit</a>
+            <a href="{{ url_for('home.data_dokter') }}">Data Dokter</a>
+            <a href="{{ url_for('home.data_konsultasi') }}">Jadwal Saya</a>
+            <a href="{{ url_for('auth.logout') }}">Keluar</a>
+        </div>
+        <span onclick="openNav()" class="pull-right menu-icon">☰</span>
+    </div>
+</header>
+
